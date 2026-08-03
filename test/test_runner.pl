@@ -1,0 +1,16 @@
+:- ensure_loaded(test_business_registry).
+:- ensure_loaded(test_simulation_clock).
+:- ensure_loaded(test_customers).
+:- ensure_loaded(test_offices).
+:- ensure_loaded(test_locations).
+:- ensure_loaded(test_virtual_environments).
+:- ensure_loaded(test_concerts).
+:- ensure_loaded(test_consent).
+:- ensure_loaded(test_ticketing).
+:- ensure_loaded(test_payments).
+:- ensure_loaded(test_accounting).
+:- ensure_loaded(test_compliance).
+:- ensure_loaded(test_safety).
+:- ensure_loaded(test_accessibility).
+:- ensure_loaded(test_persistence).
+:- ensure_loaded(test_scenarios).
