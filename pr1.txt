@@ -1,0 +1,1692 @@
+Below is an implementation-ready specification for a GitHub Copilot coding agent. The “fake memories” and “teleporting” concepts are implemented only as consent-based simulated narrative effects, such as scene transitions, pre-recorded recollections, time compression, or VR continuity—not actual memory alteration or deceptive confinement.
+
+Business Simulation Suite
+
+GitHub Copilot Agent Prolog Program Requirements
+
+Primary implementation language: SWI-Prolog
+Primary deliverable: PROGRAM_REQUIREMENTS.md
+Working title: Business Simulation Suite
+Suggested repository name: business-simulation-suite
+
+⸻
+
+1. Project Summary
+
+Create a Prolog-based Business Simulation Suite that allows users to model and operate simulated businesses involving:
+
+* customers;
+* managers and employees;
+* offices and business premises;
+* physical and virtual locations;
+* bookings;
+* concerts and performances;
+* ticket and door payments;
+* simulated musicians, sets, audiences and acoustics;
+* virtual architecture;
+* business reputation and customer buzz;
+* daily work progression;
+* financial reporting;
+* legal, ethical and operational constraints.
+
+The suite must support a configurable relationship between real time and simulated business time.
+
+The default ratio is:
+
+1 real day = 1 simulated workday
+
+The system must also support other explicitly configured ratios for testing and accelerated simulation.
+
+A business may organise a concert or similar event from a modest physical home, office, studio or approved venue while presenting customers with a much larger virtual environment. The virtual environment may use simulated architecture, sound, performers, crowds, scenery and transitions.
+
+The system must distinguish clearly between:
+
+1. the real physical location;
+2. the legally registered business address;
+3. the customer-facing virtual address;
+4. the simulated interior environment;
+5. the location at which payment is accepted;
+6. the emergency and accessibility arrangements.
+
+Virtual presentation must not falsely claim that a simulated facility physically exists. Customers must be informed when significant parts of an experience are simulated.
+
+⸻
+
+2. Core Objectives
+
+The program must:
+
+1. simulate the establishment and operation of businesses;
+2. create and manage customers, offices, personnel and venues;
+3. progress simulated work according to real elapsed time;
+4. model physical and virtual business locations separately;
+5. create consent-based virtual concert experiences;
+6. manage ticketing and door payments;
+7. calculate revenue, expenses, profit, tax estimates and refunds;
+8. model customer satisfaction, buzz and repeat attendance;
+9. prevent unsafe, misleading or unlawful simulated activities;
+10. produce deterministic, auditable Prolog results;
+11. allow scenarios to be saved, replayed and compared;
+12. provide a command-line interface and a documented Prolog API.
+
+⸻
+
+3. Non-Goals
+
+The first release must not:
+
+* manipulate real memories;
+* claim to teleport real people;
+* conceal a customer’s actual physical location;
+* simulate imprisonment or prevent a customer from leaving;
+* process real bank-card details directly;
+* generate deceptive testimonials or fake real-world reviews;
+* impersonate real musicians without permission;
+* sell tickets for events that cannot be delivered;
+* bypass venue, noise, occupancy, tax or consumer-protection laws;
+* present simulated safety equipment as physical safety equipment;
+* treat simulated crowd size as actual attendance;
+* create synthetic customer identities for real financial transactions;
+* provide medical or neurological procedures;
+* use covert biometric, emotional or behavioural surveillance.
+
+“Teleporting” must mean a clearly disclosed transition between simulated scenes, a rapid change in virtual location, or an optional transition to an event’s concluding scene.
+
+“Fake memories” must mean fictional recollection sequences, narrative recaps or simulated backstory presented with informed consent. They must never be represented as actual memories belonging to the customer.
+
+⸻
+
+4. Principal Use Cases
+
+4.1 Create a Business
+
+A user can create a business with:
+
+* unique business identifier;
+* name;
+* business type;
+* owner or manager;
+* registration status;
+* physical address;
+* virtual address;
+* opening date;
+* operating hours;
+* starting funds;
+* simulation clock;
+* safety policy;
+* refund policy;
+* disclosure policy.
+
+Example:
+
+create_business(
+    business_spec(
+        name('Lucian Virtual Concerts'),
+        type(virtual_entertainment),
+        manager(manager_001),
+        physical_location(location_001),
+        virtual_address('virtual://lucian-concert-hall'),
+        starting_balance(5000.00)
+    ),
+    BusinessId
+).
+
+4.2 Create Customers
+
+The system can generate simulated customers using configurable population profiles.
+
+Profiles may include:
+
+* age band;
+* spending range;
+* interests;
+* accessibility requirements;
+* preferred event type;
+* price sensitivity;
+* novelty preference;
+* travel tolerance;
+* virtual-technology familiarity;
+* likelihood of recommending an event.
+
+Simulated customers must be marked as simulated and cannot be used as real purchasers, reviews or attendance claims.
+
+generate_customers(
+    customer_profile(
+        count(100),
+        interests([live_music, immersive_art]),
+        budget_range(20.00, 120.00)
+    ),
+    CustomerIds
+).
+
+4.3 Create an Office
+
+An office may have:
+
+* a physical component;
+* a virtual component;
+* staff capacity;
+* customer capacity;
+* equipment;
+* accessibility attributes;
+* operating cost;
+* noise limits;
+* permissions;
+* opening hours.
+
+create_office(
+    BusinessId,
+    office_spec(
+        physical_location(location_001),
+        virtual_interior(interior_grand_hall),
+        staff_capacity(4),
+        physical_customer_capacity(12),
+        virtual_customer_capacity(500)
+    ),
+    OfficeId
+).
+
+The program must never treat virtual capacity as physical occupancy capacity.
+
+4.4 Schedule a Concert
+
+A concert requires:
+
+* an accountable business;
+* a manager;
+* a physical host location;
+* a virtual presentation address;
+* a start and end time;
+* a performer specification;
+* a set specification;
+* an audio method;
+* customer disclosures;
+* physical occupancy limits;
+* emergency arrangements;
+* payment rules;
+* cancellation and refund rules.
+
+schedule_concert(
+    BusinessId,
+    concert_spec(
+        title('The Infinite Parlour'),
+        physical_location(location_001),
+        virtual_address('virtual://infinite-parlour'),
+        starts_at(datetime(2026, 8, 10, 19, 30, 0)),
+        duration_minutes(90),
+        performer(simulated_musician('The Clockwork Quartet')),
+        set(virtual_set(tardis_hall)),
+        sound(simulated_headphone_audio),
+        ticket_price(45.00)
+    ),
+    ConcertId
+).
+
+⸻
+
+5. Time Model
+
+5.1 Default Clock Ratio
+
+The default simulation ratio must be:
+
+time_ratio(real_days(1), simulation_workdays(1)).
+
+Only business workdays count by default. Weekends, holidays and closures are handled according to the business calendar.
+
+5.2 Configurable Time Ratios
+
+Testing may use accelerated ratios:
+
+set_time_ratio(SimulationId, real_minutes(1), simulation_workdays(1)).
+
+Accelerated time must be visibly marked as test or simulation time.
+
+5.3 Elapsed Workday Calculation
+
+Provide:
+
+elapsed_workdays(+SimulationId, +FromTimestamp, +ToTimestamp, -Days).
+advance_simulation(+SimulationId, +ToTimestamp, -Events).
+
+The calculation must consider:
+
+* timezone;
+* daylight-saving changes;
+* business calendar;
+* weekends;
+* holidays;
+* temporary closures;
+* partial workdays;
+* configured ratio;
+* pauses;
+* manually approved corrections.
+
+5.4 Idempotence
+
+Calling advance_simulation/3 twice with the same target time must not duplicate:
+
+* revenue;
+* wages;
+* bookings;
+* generated customers;
+* notifications;
+* business events;
+* accounting entries.
+
+⸻
+
+6. Physical and Virtual Location Model
+
+6.1 Physical Location
+
+A physical location must record:
+
+physical_location(
+    LocationId,
+    address(Address),
+    location_type(Type),
+    maximum_occupancy(MaximumOccupancy),
+    noise_limit(NoiseLimit),
+    accessible_features(Features),
+    emergency_exits(ExitCount),
+    permissions(Permissions)
+).
+
+Possible physical location types include:
+
+* home;
+* office;
+* studio;
+* theatre;
+* hall;
+* shopfront;
+* outdoor_space;
+* licensed_venue;
+* temporary_installation.
+
+6.2 Virtual Address
+
+A virtual address is a customer-facing identifier for entering the digital experience.
+
+virtual_address(
+    VirtualAddressId,
+    uri(Uri),
+    owner(BusinessId),
+    environment(EnvironmentId),
+    active_from(Start),
+    active_until(End)
+).
+
+A virtual address must not be represented as:
+
+* a land title;
+* a postal address;
+* a physical emergency destination;
+* proof of physical venue capacity;
+* a substitute for required business registration information.
+
+6.3 Virtual Walls
+
+Virtual walls describe simulated spatial boundaries.
+
+virtual_wall(
+    WallId,
+    environment(EnvironmentId),
+    geometry(Geometry),
+    appearance(Appearance),
+    acoustic_effect(AcousticEffect),
+    collision_mode(CollisionMode)
+).
+
+Supported collision modes:
+
+* visual_only;
+* navigation_boundary;
+* warning_boundary;
+* accessibility_guidance.
+
+Virtual walls must not obscure real physical hazards or exits.
+
+6.4 TARDIS-Like Interior
+
+A TARDIS-like environment means that the simulated interior appears larger than the physical host space.
+
+virtual_interior(
+    InteriorId,
+    apparent_capacity(ApparentCapacity),
+    apparent_dimensions(Dimensions),
+    physical_host(LocationId),
+    disclosure_required(true)
+).
+
+The program must maintain separate values for:
+
+physical_capacity(EventId, PhysicalCapacity).
+virtual_apparent_capacity(EventId, ApparentCapacity).
+actual_attendance(EventId, ActualAttendance).
+simulated_crowd_size(EventId, SimulatedCrowdSize).
+
+No report may combine these figures misleadingly.
+
+⸻
+
+7. Concert Technology Model
+
+7.1 Sound Modes
+
+Supported sound modes include:
+
+* headphones;
+* directional_speakers;
+* low_volume_speakers;
+* haptic_audio;
+* streamed_audio;
+* fully_simulated_audio;
+* silent_visual_performance;
+* mixed_reality_audio.
+
+Example:
+
+sound_mode(
+    ConcertId,
+    simulated_headphone_audio,
+    noise_escape_rating(low)
+).
+
+7.2 Noise Cancellation
+
+The suite may model:
+
+* active noise cancellation;
+* acoustic insulation;
+* directional audio;
+* personal headphones;
+* virtual acoustics;
+* sound-level limiting.
+
+It must not claim that software noise cancellation alone prevents real sound from leaving a physical building.
+
+validate_noise_plan(+ConcertId, -Result).
+
+Possible results:
+
+valid.
+warning(Reason).
+invalid(Reason).
+
+7.3 Musicians
+
+A performer may be:
+
+* a real musician;
+* a licensed recording;
+* an authorised avatar;
+* a fictional simulated musician;
+* a procedural music system;
+* a hybrid real and simulated ensemble.
+
+performer_type(real_person).
+performer_type(licensed_recording).
+performer_type(authorised_avatar).
+performer_type(fictional_simulation).
+performer_type(procedural_music).
+performer_type(hybrid).
+
+The program must require evidence of permission for identifiable real performers.
+
+validate_performer_rights(+PerformerSpec, -Result).
+
+7.4 Virtual Sets
+
+A set may include:
+
+* scenery;
+* lighting;
+* animated objects;
+* simulated weather;
+* stage transformations;
+* impossible architecture;
+* virtual crowds;
+* scene transitions;
+* fictional transport effects.
+
+create_virtual_set(
+    set_spec(
+        theme(cosmic_opera),
+        environments([parlour, starship, crystal_garden]),
+        transitions([doorway, dissolve, simulated_teleport]),
+        accessibility_mode(reduced_motion_available)
+    ),
+    SetId
+).
+
+7.5 Virtual Fans and Crowds
+
+Virtual fans may enhance atmosphere but must be classified as simulated.
+
+crowd_component(real_attendees, 12).
+crowd_component(remote_attendees, 80).
+crowd_component(simulated_fans, 400).
+
+Simulated fans must not:
+
+* submit real reviews;
+* appear in actual ticket-sales figures;
+* be counted as real attendees;
+* create fake queues;
+* deceive customers about event popularity;
+* place artificial bids or purchases.
+
+⸻
+
+8. Narrative Memory and Time-Transition Effects
+
+8.1 Fictional Memory Sequences
+
+The system may provide optional narrative sequences that make a customer feel familiar with a fictional setting or story.
+
+Examples include:
+
+* an introductory recap;
+* a fictional diary;
+* a character backstory;
+* a montage of events;
+* a simulated shared history;
+* a “previously in this story” sequence.
+
+Use:
+
+narrative_memory_effect(
+    EffectId,
+    type(fictional_recollection),
+    disclosure(explicit),
+    consent(required),
+    skippable(true),
+    persistent_profile_change(false)
+).
+
+The suite must not claim to implant, erase or modify a person’s real memory.
+
+8.2 Simulated Teleportation
+
+Simulated teleportation means a virtual scene transition.
+
+scene_transition(
+    TransitionId,
+    type(simulated_teleport),
+    from(SceneA),
+    to(SceneB),
+    duration_seconds(Duration),
+    reduced_motion_alternative(Alternative)
+).
+
+8.3 Time Compression
+
+A customer may optionally skip or compress parts of a performance.
+
+time_compression_option(
+    EventId,
+    mode(skip_to_finale),
+    customer_controlled(true),
+    disclosure(explicit)
+).
+
+The customer must retain the ability to:
+
+* pause where technically possible;
+* exit the experience;
+* decline the effect;
+* select a non-immersive mode;
+* access an ordinary chronological version.
+
+⸻
+
+9. Customer Consent
+
+Before admission, the system must generate a disclosure record.
+
+customer_consent(
+    ConsentId,
+    customer(CustomerId),
+    event(EventId),
+    disclosures(Disclosures),
+    accepted_at(Timestamp),
+    version(PolicyVersion)
+).
+
+Required disclosures may include:
+
+* parts of the venue are virtual;
+* crowd members may be simulated;
+* musicians may be simulated or recorded;
+* scenes may depict impossible spaces;
+* scene transitions may resemble teleportation;
+* fictional memory sequences may be presented;
+* physical capacity differs from apparent virtual capacity;
+* audio may be delivered through headphones;
+* motion effects may cause discomfort;
+* payment and refund terms;
+* data collection practices.
+
+Consent must be:
+
+* informed;
+* specific;
+* revocable before participation;
+* recorded;
+* versioned;
+* accessible in plain language.
+
+The customer must be able to decline nonessential immersive effects without losing access to any basic service they have already paid for, unless the essential nature of the experience was clearly disclosed before purchase.
+
+⸻
+
+10. Payments and Ticketing
+
+10.1 Payment Abstraction
+
+The Prolog program must not store raw card details.
+
+Use an external payment-provider abstraction:
+
+payment_request(
+    PaymentId,
+    payer(CustomerId),
+    payee(BusinessId),
+    amount(Amount),
+    currency(Currency),
+    purpose(Purpose),
+    external_reference(Reference)
+).
+
+10.2 Door Payments
+
+The real manager may accept money at the physical entrance through:
+
+* cash;
+* external card terminal;
+* verified electronic payment;
+* prepaid ticket;
+* approved voucher.
+
+record_door_payment(
+    EventId,
+    CustomerId,
+    payment_method(cash),
+    amount(45.00),
+    ReceiptId
+).
+
+10.3 Ticket Validation
+
+Provide:
+
+issue_ticket(+BookingId, -TicketId).
+validate_ticket(+TicketId, +EventId, -Result).
+admit_customer(+TicketId, +CheckpointId, -AdmissionResult).
+
+Ticket validation must prevent:
+
+* duplicate admission;
+* admission to the wrong event;
+* expired tickets;
+* refunded tickets;
+* forged ticket identifiers;
+* exceeding physical capacity.
+
+10.4 Refunds
+
+Provide:
+
+calculate_refund(+BookingId, +Reason, -Amount).
+issue_refund(+BookingId, +Reason, -RefundId).
+
+Refund rules must cover:
+
+* event cancellation;
+* substantial event changes;
+* technical failure;
+* denied admission caused by organiser overbooking;
+* customer cancellation;
+* failure to disclose major simulated components.
+
+⸻
+
+11. Business Buzz and Professional Presentation
+
+The system may simulate customer interest and business reputation.
+
+business_buzz(
+    BusinessId,
+    period(Start, End),
+    score(Score),
+    evidence(Evidence)
+).
+
+Evidence may include:
+
+* real ticket sales;
+* repeat bookings;
+* consented customer surveys;
+* genuine referrals;
+* website visits;
+* real attendance;
+* customer retention;
+* press coverage entered by an authorised user.
+
+Synthetic customers and simulated fans may be used for internal forecasts only.
+
+The suite must produce separate measures:
+
+forecast_buzz_score/3.
+actual_buzz_score/3.
+simulated_buzz_score/3.
+
+Marketing output must not convert forecast or simulated metrics into claims of actual popularity.
+
+⸻
+
+12. Customer Simulation
+
+12.1 Customer State
+
+Each simulated customer may have:
+
+customer_state(
+    CustomerId,
+    awareness(Level),
+    interest(Level),
+    trust(Level),
+    budget(Amount),
+    satisfaction(Level),
+    fatigue(Level),
+    accessibility_needs(Needs),
+    previous_events(EventIds)
+).
+
+12.2 Customer Decision Process
+
+Provide deterministic or seeded stochastic decision models for:
+
+* discovering an event;
+* considering attendance;
+* purchasing;
+* requesting information;
+* attending;
+* leaving early;
+* purchasing merchandise;
+* reviewing the event;
+* recommending the business;
+* returning later.
+
+customer_decision(
+    CustomerId,
+    EventId,
+    Context,
+    Decision,
+    Explanation
+).
+
+Every generated decision must include an explanation.
+
+Example:
+
+Decision = purchase_ticket,
+Explanation = [
+    interest_match(high),
+    price_within_budget,
+    trusted_disclosure,
+    accessible_audio_option
+].
+
+12.3 Randomness
+
+Random simulation must support reproducible seeds.
+
+run_simulation(+ScenarioId, +Seed, -Result).
+
+The same scenario, program version and seed must produce the same result.
+
+⸻
+
+13. Office and Staffing Simulation
+
+13.1 Roles
+
+Supported roles may include:
+
+* owner;
+* manager;
+* booking_agent;
+* ticket_attendant;
+* performer;
+* sound_operator;
+* virtual_set_designer;
+* safety_officer;
+* accessibility_coordinator;
+* customer_support;
+* accountant;
+* security_staff;
+* technician.
+
+13.2 Work Scheduling
+
+assign_shift(
+    EmployeeId,
+    BusinessId,
+    Role,
+    starts_at(Start),
+    ends_at(End),
+    ShiftId
+).
+
+The system must detect:
+
+* overlapping shifts;
+* insufficient rest periods;
+* understaffing;
+* missing safety roles;
+* excessive labour cost;
+* missing responsible manager;
+* staff assigned to incompatible simultaneous tasks.
+
+13.3 Daily Work Progression
+
+For every simulated workday, process:
+
+1. opening checks;
+2. staffing;
+3. bookings;
+4. marketing;
+5. customer enquiries;
+6. rehearsals;
+7. event preparation;
+8. event operation;
+9. payment reconciliation;
+10. refunds;
+11. maintenance;
+12. reporting.
+
+⸻
+
+14. Financial Simulation
+
+The system must maintain double-entry-style accounting records or a clearly balanced simplified ledger.
+
+ledger_entry(
+    EntryId,
+    business(BusinessId),
+    timestamp(Timestamp),
+    debit(AccountA),
+    credit(AccountB),
+    amount(Amount),
+    description(Description),
+    source(Source)
+).
+
+Required reports:
+
+daily_profit_and_loss(+BusinessId, +Date, -Report).
+cash_flow_report(+BusinessId, +Period, -Report).
+event_profitability(+EventId, -Report).
+customer_acquisition_cost(+BusinessId, +Period, -Amount).
+refund_liability(+BusinessId, -Amount).
+
+Event expenses may include:
+
+* performer fees;
+* software licensing;
+* equipment;
+* payment fees;
+* staff wages;
+* insurance;
+* venue expenses;
+* virtual-set production;
+* marketing;
+* sound equipment;
+* accessibility support;
+* taxes;
+* refunds.
+
+The program must distinguish simulated money from real accounting data.
+
+⸻
+
+15. Compliance and Safety Rules
+
+Provide a rule engine:
+
+compliance_check(+EntityOrEvent, -Findings).
+
+Each finding must have:
+
+finding(
+    severity(Severity),
+    code(Code),
+    description(Description),
+    evidence(Evidence),
+    suggested_action(Action)
+).
+
+Severity levels:
+
+* information;
+* warning;
+* blocking;
+* emergency.
+
+Blocking conditions must include:
+
+* physical occupancy exceeded;
+* no physical host location;
+* no responsible manager;
+* missing emergency exit information;
+* undisclosed simulated performer;
+* unauthorised use of real performer identity;
+* payment demanded for an event known to be undeliverable;
+* customer unable to exit;
+* virtual effects concealing physical hazards;
+* absence of required refund terms;
+* failure to distinguish virtual from physical capacity;
+* missing consent for optional memory-like narrative effects;
+* admission after ticket refund;
+* event operating outside configured legal or venue permissions.
+
+The first release may use configurable policy profiles rather than claiming comprehensive legal compliance.
+
+Example:
+
+load_policy_profile(australia_general_entertainment).
+
+Policy profiles must include a disclaimer that professional legal, tax, building, licensing and safety advice may still be required.
+
+⸻
+
+16. Ethical Simulation Rules
+
+The following predicates must always fail or return a blocking finding:
+
+permit_actual_memory_manipulation(_).
+permit_nonconsensual_psychological_effect(_).
+permit_false_physical_venue_claim(_).
+permit_fake_real_customer_review(_).
+permit_hidden_exit_restriction(_).
+permit_unlicensed_real_person_impersonation(_).
+permit_payment_for_known_nonexistent_event(_).
+permit_simulated_attendee_as_real_attendee(_).
+
+Recommended implementation:
+
+permit_actual_memory_manipulation(_) :-
+    throw(error(prohibited_operation(actual_memory_manipulation), _)).
+
+⸻
+
+17. Prolog Module Architecture
+
+Create the following modules:
+
+src/
+  business_suite.pl
+  business_registry.pl
+  simulation_clock.pl
+  simulation_engine.pl
+  customer_model.pl
+  customer_generator.pl
+  office_model.pl
+  location_model.pl
+  virtual_environment.pl
+  event_model.pl
+  concert_model.pl
+  performer_model.pl
+  sound_model.pl
+  narrative_effects.pl
+  consent_model.pl
+  booking_model.pl
+  ticketing.pl
+  payment_model.pl
+  accounting.pl
+  staffing.pl
+  buzz_model.pl
+  compliance.pl
+  safety.pl
+  accessibility.pl
+  persistence.pl
+  reporting.pl
+  command_parser.pl
+  repl.pl
+
+Test structure:
+
+test/
+  test_business_registry.pl
+  test_simulation_clock.pl
+  test_customers.pl
+  test_offices.pl
+  test_locations.pl
+  test_virtual_environments.pl
+  test_concerts.pl
+  test_consent.pl
+  test_ticketing.pl
+  test_payments.pl
+  test_accounting.pl
+  test_compliance.pl
+  test_safety.pl
+  test_accessibility.pl
+  test_persistence.pl
+  test_scenarios.pl
+
+Documentation:
+
+docs/
+  ARCHITECTURE.md
+  USER_GUIDE.md
+  PROLOG_API.md
+  SIMULATION_MODEL.md
+  SAFETY_AND_CONSENT.md
+  EXAMPLE_SCENARIOS.md
+  COMMAND_REFERENCE.md
+
+⸻
+
+18. Public API
+
+The top-level module must export a small, stable API.
+
+:- module(business_suite, [
+    new_simulation/2,
+    load_simulation/2,
+    save_simulation/2,
+    create_business/2,
+    create_customer/2,
+    generate_customers/2,
+    create_office/3,
+    create_physical_location/2,
+    create_virtual_environment/2,
+    schedule_concert/3,
+    sell_ticket/4,
+    record_door_payment/5,
+    advance_simulation/3,
+    run_simulation/3,
+    compliance_check/2,
+    business_report/3,
+    event_report/2,
+    start_repl/0
+]).
+
+⸻
+
+19. State Management
+
+The core simulation state must be explicit and serialisable.
+
+Preferred representation:
+
+simulation_state(
+    metadata(Metadata),
+    clock(Clock),
+    businesses(Businesses),
+    customers(Customers),
+    offices(Offices),
+    locations(Locations),
+    environments(Environments),
+    events(Events),
+    bookings(Bookings),
+    payments(Payments),
+    employees(Employees),
+    ledger(Ledger),
+    consent_records(ConsentRecords),
+    audit_log(AuditLog)
+).
+
+The core engine should prefer state threading:
+
+apply_command(+Command, +State0, -State, -Result).
+
+Dynamic predicates may be used only in the interactive shell or persistence adapter, not as the sole source of simulation truth.
+
+⸻
+
+20. Determinism
+
+Public commands must be deterministic or semideterministic.
+
+Use declarations in documentation:
+
+% create_business(+Specification, -BusinessId) is det.
+% validate_ticket(+TicketId, +EventId, -Result) is det.
+% find_business(+Query, -Business) is nondet.
+
+Search predicates may intentionally be nondeterministic, but state-changing predicates must not leave choice points.
+
+Tests must verify:
+
+call_cleanup(Goal, Det = true),
+Det == true.
+
+or use an equivalent SWI-Prolog determinism test.
+
+⸻
+
+21. Validation
+
+All externally supplied terms must be validated before modifying state.
+
+Provide validators such as:
+
+valid_business_spec/1.
+valid_customer_spec/1.
+valid_location_spec/1.
+valid_concert_spec/1.
+valid_payment_spec/1.
+valid_consent_record/1.
+
+Validation errors must use structured terms:
+
+error(
+    validation_error(
+        field(ticket_price),
+        value(-10),
+        reason(must_be_nonnegative)
+    ),
+    Context
+).
+
+Do not silently repair material errors.
+
+⸻
+
+22. Identifiers
+
+Identifiers must be unique and stable.
+
+Examples:
+
+simulation_000001
+business_000001
+customer_000001
+office_000001
+location_000001
+environment_000001
+event_000001
+booking_000001
+ticket_000001
+payment_000001
+consent_000001
+
+Do not use personally identifying information as an identifier.
+
+⸻
+
+23. Persistence
+
+Support saving and loading scenarios as Prolog terms.
+
+save_simulation(+SimulationId, +File).
+load_simulation(+File, -SimulationId).
+
+Optional JSON support may be added.
+
+Persistence requirements:
+
+* atomic writes;
+* schema version;
+* backup before migration;
+* validation on load;
+* no execution of arbitrary terms;
+* reject directives and callable terms in untrusted files;
+* retain audit history;
+* preserve deterministic replay information.
+
+⸻
+
+24. Audit Log
+
+Every state-changing operation must create an audit entry.
+
+audit_entry(
+    AuditId,
+    timestamp(Timestamp),
+    actor(Actor),
+    action(Action),
+    target(Target),
+    before_hash(BeforeHash),
+    after_hash(AfterHash),
+    result(Result)
+).
+
+The audit system must record:
+
+* ticket sales;
+* refunds;
+* consent;
+* admissions;
+* event changes;
+* capacity changes;
+* payment recording;
+* policy overrides;
+* simulation-time changes;
+* scenario imports;
+* manual adjustments.
+
+⸻
+
+25. Command-Line Interface
+
+Provide an interactive REPL.
+
+Example:
+
+business-suite> new simulation "Concert Company"
+Created simulation simulation_000001.
+business-suite> create business "Infinite Rooms Entertainment"
+Created business business_000001.
+business-suite> create home venue capacity 10
+Created physical location location_000001.
+business-suite> create virtual hall apparent capacity 500
+Created environment environment_000001.
+business-suite> schedule concert "The Infinite Parlour" ticket 45
+Compliance check: 2 warnings.
+Concert created as event_000001.
+business-suite> advance 1 workday
+Processed 1 simulated workday.
+Revenue: AUD 450.00
+Expenses: AUD 180.00
+New bookings: 10
+
+The command parser may use DCGs.
+
+Example:
+
+command(schedule_concert(Title, Price)) -->
+    [schedule, concert],
+    quoted_text(Title),
+    [ticket],
+    number(Price).
+
+⸻
+
+26. Reports
+
+Generate human-readable and machine-readable reports.
+
+26.1 Event Report
+
+Include:
+
+* event title;
+* physical location;
+* virtual address;
+* physical capacity;
+* apparent virtual capacity;
+* real attendance;
+* remote attendance;
+* simulated crowd count;
+* tickets sold;
+* refunds;
+* revenue;
+* expenses;
+* profit;
+* satisfaction;
+* complaints;
+* safety findings;
+* disclosure version.
+
+26.2 Business Report
+
+Include:
+
+* cash balance;
+* revenue;
+* expenses;
+* profit;
+* outstanding refunds;
+* customer count;
+* repeat customers;
+* employee workload;
+* upcoming events;
+* compliance warnings;
+* genuine buzz score;
+* forecast buzz score.
+
+26.3 Truthful Metrics
+
+Every report must label values as one of:
+
+metric_status(actual).
+metric_status(simulated).
+metric_status(forecast).
+metric_status(estimated).
+metric_status(user_supplied).
+
+⸻
+
+27. Accessibility
+
+Every event must support an accessibility profile.
+
+Possible features include:
+
+* captions;
+* transcripts;
+* sign-language video;
+* audio description;
+* reduced-motion mode;
+* no-flashing mode;
+* volume control;
+* headphone alternatives;
+* wheelchair access data;
+* seated experience;
+* text-based navigation;
+* simplified interface;
+* scene-transition warning;
+* ability to skip fictional memory sequences.
+
+accessibility_check(+EventId, +CustomerNeeds, -Result).
+
+The suite must not claim that virtual accessibility compensates for an inaccessible physical evacuation route.
+
+⸻
+
+28. Example Scenario
+
+Implement the following demonstration scenario.
+
+Scenario: The Infinite Parlour
+
+A manager operates a concert business from a small approved physical location with capacity for twelve customers.
+
+The experience presents:
+
+* a virtual concert hall with an apparent capacity of 500;
+* a fictional simulated band;
+* virtual stage scenery;
+* personal headphone audio;
+* simulated fans;
+* an optional fictional “shared history” montage;
+* a simulated teleport transition to the final scene;
+* a reduced-motion mode;
+* in-person door payments;
+* remote virtual tickets.
+
+Expected properties:
+
+physical_capacity(event_infinite_parlour, 12).
+virtual_apparent_capacity(event_infinite_parlour, 500).
+performer_type(event_infinite_parlour, fictional_simulation).
+audio_delivery(event_infinite_parlour, headphones).
+simulated_crowd_size(event_infinite_parlour, 400).
+actual_attendance(event_infinite_parlour, 10).
+remote_attendance(event_infinite_parlour, 75).
+
+The report must not state that 485 real people attended.
+
+It may state:
+
+10 physical attendees
+75 remote attendees
+400 simulated audience characters
+485 total rendered audience presences
+
+“Total rendered audience presences” must never be substituted for “attendance”.
+
+⸻
+
+29. Required Tests
+
+29.1 Time Tests
+
+Test:
+
+* one real day produces one simulated workday;
+* weekends are skipped when configured;
+* holidays are skipped;
+* daylight-saving transitions;
+* paused simulations;
+* accelerated test clocks;
+* repeated advancement does not duplicate events.
+
+29.2 Capacity Tests
+
+Test:
+
+* actual attendance below capacity;
+* attendance equal to capacity;
+* attempted attendance above capacity;
+* virtual capacity greater than physical capacity;
+* simulated fans excluded from occupancy;
+* remote attendees excluded from physical occupancy.
+
+29.3 Consent Tests
+
+Test:
+
+* explicit consent accepted;
+* consent declined;
+* consent withdrawn;
+* old consent policy version;
+* undisclosed simulated performer;
+* optional fictional recollection skipped;
+* reduced-motion alternative selected.
+
+29.4 Ticketing Tests
+
+Test:
+
+* valid ticket;
+* duplicate scan;
+* refunded ticket;
+* wrong event;
+* expired ticket;
+* sold-out physical venue;
+* available remote attendance;
+* door payment receipt.
+
+29.5 Accounting Tests
+
+Test:
+
+* balanced ledger;
+* ticket income;
+* door payment;
+* performer expense;
+* refund;
+* payment fee;
+* event profit;
+* outstanding refund liability.
+
+29.6 Ethical Tests
+
+The following must be rejected:
+
+create_effect(actual_memory_implantation).
+create_transition(real_teleportation).
+publish_metric(real_attendance, simulated_fan_count).
+create_review(simulated_customer, public_real_review).
+hide_virtual_disclosure(event_001).
+lock_customer_in_experience(customer_001).
+impersonate_performer(real_person_without_permission).
+
+29.7 Reproducibility Tests
+
+The same scenario and seed must produce identical:
+
+* customer generation;
+* purchase decisions;
+* attendance;
+* satisfaction;
+* buzz;
+* revenue;
+* event ordering.
+
+⸻
+
+30. Acceptance Criteria
+
+The project is accepted when:
+
+1. all required modules compile in current SWI-Prolog;
+2. swipl -q -g run_tests -t halt passes;
+3. the example scenario runs from creation to final report;
+4. one real day maps to one simulated workday by default;
+5. physical and virtual capacity remain separate;
+6. simulated fans are never reported as real customers;
+7. fictional memory effects require consent and disclosure;
+8. simulated teleportation is implemented as a scene transition;
+9. customers can exit or decline optional immersive effects;
+10. ticket payments and refunds are auditable;
+11. raw payment-card data is not stored;
+12. state-changing predicates do not leave unintended choice points;
+13. save and reload preserve the simulation;
+14. reports label actual, simulated, forecast and estimated metrics;
+15. blocking safety violations prevent event admission or activation;
+16. documentation explains how to run and extend the suite.
+
+⸻
+
+31. Development Workflow for GitHub Copilot Agent
+
+The agent must work in stages.
+
+Stage 1: Repository Foundation
+
+Create:
+
+* directory structure;
+* module skeletons;
+* test runner;
+* README;
+* initial requirements document;
+* basic continuous-integration configuration.
+
+Stage 2: State and Business Registry
+
+Implement:
+
+* simulation state;
+* identifiers;
+* businesses;
+* offices;
+* physical locations;
+* virtual addresses;
+* validation.
+
+Stage 3: Simulation Clock
+
+Implement:
+
+* real-to-simulation time ratio;
+* work calendars;
+* advancement;
+* idempotence;
+* deterministic event processing.
+
+Stage 4: Customers and Staffing
+
+Implement:
+
+* customer generation;
+* customer state;
+* employee roles;
+* shifts;
+* daily work processing.
+
+Stage 5: Concerts and Virtual Environments
+
+Implement:
+
+* concerts;
+* performers;
+* virtual sets;
+* virtual walls;
+* apparent-space expansion;
+* sound modes;
+* simulated crowd components;
+* scene transitions.
+
+Stage 6: Consent and Accessibility
+
+Implement:
+
+* disclosure generation;
+* consent records;
+* withdrawal;
+* reduced-motion alternatives;
+* optional fictional recollection sequences;
+* accessibility checking.
+
+Stage 7: Ticketing and Payments
+
+Implement:
+
+* bookings;
+* tickets;
+* ticket validation;
+* admission;
+* payment abstractions;
+* door payments;
+* receipts;
+* refunds.
+
+Stage 8: Accounting and Buzz
+
+Implement:
+
+* ledger;
+* profit reports;
+* event profitability;
+* buzz calculations;
+* strict separation of actual and simulated metrics.
+
+Stage 9: Compliance and Safety
+
+Implement:
+
+* compliance rules;
+* blocking findings;
+* performer rights;
+* capacity enforcement;
+* consumer disclosure checks;
+* prohibited-operation tests.
+
+Stage 10: REPL and Documentation
+
+Implement:
+
+* DCG command parser;
+* interactive REPL;
+* command help;
+* demonstration scenario;
+* complete API documentation.
+
+At every stage, the agent must:
+
+1. inspect existing code before editing;
+2. implement the smallest coherent feature set;
+3. write unit tests;
+4. run all tests;
+5. fix warnings and failures;
+6. update documentation;
+7. preserve backward compatibility where practical;
+8. avoid changing tests merely to hide a semantic error;
+9. record unfinished work in TODO.md;
+10. provide a concise implementation summary.
+
+⸻
+
+32. Coding Standards
+
+Use:
+
+* clear predicate names;
+* module-qualified calls where ambiguity exists;
+* must_be/2 or structured validators;
+* explicit state transitions;
+* deterministic state-changing predicates;
+* PlUnit tests;
+* comments describing intent rather than restating syntax;
+* ISO-compatible constructs where practical;
+* SWI-Prolog libraries where they materially simplify the code.
+
+Avoid:
+
+* unnecessary cuts;
+* global mutable state;
+* unbounded repeat/0;
+* silent exception swallowing;
+* arbitrary term execution;
+* storing sensitive payment details;
+* mixing actual and simulated metrics;
+* predicates with unclear input/output modes;
+* hidden nondeterminism in state changes.
+
+⸻
+
+33. Suggested Initial Top-Level Demonstration
+
+Provide:
+
+run_demo :-
+    new_simulation(
+        simulation_spec(
+            name('Business Simulation Demonstration'),
+            currency('AUD'),
+            timezone('Australia/Melbourne'),
+            time_ratio(real_days(1), simulation_workdays(1))
+        ),
+        SimulationId
+    ),
+    create_demo_business(SimulationId, BusinessId),
+    create_demo_locations(SimulationId, PhysicalLocation, Environment),
+    create_demo_concert(
+        SimulationId,
+        BusinessId,
+        PhysicalLocation,
+        Environment,
+        EventId
+    ),
+    compliance_check(EventId, Findings),
+    ensure_no_blocking_findings(Findings),
+    run_demo_ticket_sales(EventId),
+    advance_simulation(
+        SimulationId,
+        datetime(2026, 8, 10, 23, 59, 59),
+        _
+    ),
+    event_report(EventId, Report),
+    portray_clause(Report).
+
+Running:
+
+swipl -q -s src/business_suite.pl -g run_demo -t halt
+
+must print a complete example event report.
+
+⸻
+
+34. Future Extensions
+
+Possible later extensions include:
+
+* browser-based visual interface;
+* multiplayer business simulations;
+* networked virtual venues;
+* real external ticket-provider integrations;
+* tax plugins;
+* local jurisdiction profiles;
+* marketing campaign simulation;
+* supply-chain simulation;
+* merchandise;
+* food and beverage operations;
+* virtual-office leasing;
+* performer royalty calculation;
+* event-insurance modelling;
+* agent-based customer populations;
+* optimisation of prices and staffing;
+* digital twins of physical venues;
+* mixed-reality navigation;
+* simulation comparison dashboards;
+* educational business-management scenarios.
+
+These extensions must preserve the distinction between real, simulated, forecast and fictional data.
+
+⸻
+
+35. Final Design Principle
+
+The Business Simulation Suite should enable small businesses to present imaginative, expansive and professional virtual experiences from modest physical premises, while preserving:
+
+* informed customer consent;
+* truthful representation;
+* physical safety;
+* legal accountability;
+* accurate attendance figures;
+* transparent payments;
+* reliable refunds;
+* accessibility;
+* auditable business records.
+
+The virtual extravaganza may be impossible in appearance, but the business transaction, customer consent, safety arrangements and financial records must remain real, clear and accountable.
+
+This can be adapted into a stricter Copilot issue-by-issue build plan or extended with concrete SWI-Prolog module skeletons and PlUnit test files.
