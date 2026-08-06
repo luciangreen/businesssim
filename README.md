@@ -45,7 +45,7 @@ business-suite> quit
 
 ### 4. Prolog API — build a simulation from scratch
 
-Load the suite and run a complete scenario interactively or in a script:
+Save the following as `my_scenario.pl`, then run it with the command shown below:
 
 ```prolog
 :- use_module('src/business_suite').
@@ -123,10 +123,10 @@ example :-
     portray_clause(Report).
 ```
 
-Run this script with:
+Run the script with:
 
 ```bash
-swipl -q -s src/business_suite.pl -g example -t halt
+swipl -q -s my_scenario.pl -g example -t halt
 ```
 
 ### 5. Save and reload simulation state
