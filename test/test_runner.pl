@@ -12,5 +12,6 @@
 :- ensure_loaded(test_compliance).
 :- ensure_loaded(test_safety).
 :- ensure_loaded(test_accessibility).
+:- ensure_loaded(test_repl).
 :- ensure_loaded(test_persistence).
 :- ensure_loaded(test_scenarios).

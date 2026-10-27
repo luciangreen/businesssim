@@ -151,3 +151,8 @@ portray_clause(Report).
 - `src/` Prolog modules for simulation, compliance, reporting, persistence, and REPL.
 - `test/` PlUnit test suite.
 - `docs/` Architecture, model, API, command, and safety documentation.
+
+For feature-by-feature implementation status and runnable test commands, see
+[`docs/FEATURES_AND_TESTS.md`](docs/FEATURES_AND_TESTS.md). The user guide links
+the API, architecture, safety, and command documentation. Known gaps against
+the full specification are tracked in [`TODO.md`](TODO.md).
