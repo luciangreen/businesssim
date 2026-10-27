@@ -6,6 +6,7 @@
     update_simulation_state/3,
     set_active_simulation/1,
     active_simulation/1,
+    current_simulation/1,
     next_identifier/2,
     append_audit_entry/6,
     state_component/3,
@@ -99,6 +100,9 @@ active_simulation(SimulationId) :-
     ->  true
     ;   throw(error(existence_error(active_simulation, none), _))
     ).
+
+current_simulation(SimulationId) :-
+    active_simulation_id(SimulationId).
 
 next_identifier(Prefix, Identifier) :-
     must_be(atom, Prefix),
